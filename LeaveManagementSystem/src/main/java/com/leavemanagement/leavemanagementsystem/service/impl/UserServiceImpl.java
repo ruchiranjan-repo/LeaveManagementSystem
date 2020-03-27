@@ -107,13 +107,13 @@ public class UserServiceImpl implements UserService {
 				applyLeaveRequest.getToDate().plusDays(1));
 
 		if (applyLeaveRequest.getLeaveType().equals(LeaveType.ANNUAL_LEAVE.toString())
-				&& balancedLeave.getAnnualLeaves() > numberOfDays) {
+				&& balancedLeave.getAnnualLeaves() >= numberOfDays) {
 			balancedLeave.setAnnualLeaves(balancedLeave.getAnnualLeaves() - numberOfDays.intValue());
 		} else if (applyLeaveRequest.getLeaveType().equals(LeaveType.MY_LEAVE.toString())
-				&& balancedLeave.getMyLeaves() > numberOfDays) {
+				&& balancedLeave.getMyLeaves() >= numberOfDays) {
 			balancedLeave.setMyLeaves(balancedLeave.getMyLeaves() - numberOfDays.intValue());
 		} else if (applyLeaveRequest.getLeaveType().equals(LeaveType.RESTRICTED_LEAVE.toString())
-				&& balancedLeave.getRestrictedLeaves() > numberOfDays) {
+				&& balancedLeave.getRestrictedLeaves() >= numberOfDays) {
 			balancedLeave.setRestrictedLeaves(balancedLeave.getRestrictedLeaves() - numberOfDays.intValue());
 		} else {
 			log.warn(" No sufficient leave available for the user id: " + id);
@@ -155,13 +155,13 @@ public class UserServiceImpl implements UserService {
 				availedLeavesResponse.setNoOfDays(noOfDays.intValue());
 				availedLeavesResponses.add(availedLeavesResponse);
 			}
-			;
+			
 
 		}
 
 		UsersAvailedLeavesResponse usersAvailedLeavesResponse = new UsersAvailedLeavesResponse(id, user.getName(),
 				availedLeavesResponses);
-		log.info("Leaves availed bu the user with user id " + id + " is :" + availedLeavesResponses.size());
+		log.info("Leaves availed by the user with user id " + id + " is :" + availedLeavesResponses.size());
 
 		return usersAvailedLeavesResponse;
 	}

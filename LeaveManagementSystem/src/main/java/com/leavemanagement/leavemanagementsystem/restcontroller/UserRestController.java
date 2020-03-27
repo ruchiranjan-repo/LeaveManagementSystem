@@ -54,7 +54,7 @@ public class UserRestController {
 	}
 
 	@RequestMapping(value = "/availedleaves", method = RequestMethod.GET)
-	public ResponseEntity<UsersAvailedLeavesResponse> applyLeaves(@PathVariable("userId") Long userId)
+	public ResponseEntity<UsersAvailedLeavesResponse> getAvailedLeaves(@PathVariable("userId") Long userId)
 			throws UserNotFoundException {
 
 		UsersAvailedLeavesResponse usersAvailedLeavesResponse = userService.getAvailedLeavesByUser(userId);
