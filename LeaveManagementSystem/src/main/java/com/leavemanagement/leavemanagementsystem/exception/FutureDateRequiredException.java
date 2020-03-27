@@ -10,7 +10,7 @@ public class FutureDateRequiredException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer errorCode;
+	private final Integer errorCode;
 
 	public FutureDateRequiredException(String message, Integer errorCode) {
 		super(message);

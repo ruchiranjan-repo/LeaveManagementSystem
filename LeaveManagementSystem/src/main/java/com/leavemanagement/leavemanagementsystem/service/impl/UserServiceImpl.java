@@ -127,9 +127,7 @@ public class UserServiceImpl implements UserService {
 		availedLeaveRepository.save(availedLeave);
 		log.info("Leave applied successfully for user id: " + id);
 
-		SuccessMessageDTO successMessageDTO = new SuccessMessageDTO(successMessage, successCode);
-
-		return successMessageDTO;
+		return new SuccessMessageDTO(successMessage, successCode);
 
 	}
 
@@ -145,17 +143,17 @@ public class UserServiceImpl implements UserService {
 		User user = findUserByUserId(id);
 		List<AvailedLeave> availedLeaves = availedLeaveRepository.findByUserId(id);
 		List<AvailedLeavesResponse> availedLeavesResponses = new ArrayList<AvailedLeavesResponse>();
-		// AvailedLeavesResponse availedLeavesResponse= new AvailedLeavesResponse();
+
 		if (!CollectionUtils.isEmpty(availedLeaves)) {
-			AvailedLeavesResponse availedLeavesResponse = new AvailedLeavesResponse();
+			
 			for (AvailedLeave availedLeave : availedLeaves) {
+				AvailedLeavesResponse availedLeavesResponse = new AvailedLeavesResponse();
 				BeanUtils.copyProperties(availedLeave, availedLeavesResponse);
 				Long noOfDays = ChronoUnit.DAYS.between(availedLeavesResponse.getFromDate(),
 						availedLeavesResponse.getToDate().plusDays(1));
 				availedLeavesResponse.setNoOfDays(noOfDays.intValue());
 				availedLeavesResponses.add(availedLeavesResponse);
 			}
-			
 
 		}
 

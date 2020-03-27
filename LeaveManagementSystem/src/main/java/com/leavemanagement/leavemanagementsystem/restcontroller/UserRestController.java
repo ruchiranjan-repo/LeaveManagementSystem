@@ -1,10 +1,11 @@
 package com.leavemanagement.leavemanagementsystem.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,7 @@ public class UserRestController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/leaves", method = RequestMethod.GET)
+	@GetMapping( "/leaves")
 	public ResponseEntity<BalancedLeaveResponseDTO> getBalancedLeavesByUserId(@PathVariable("userId") Long userId)
 			throws NoLeaveDetailsFoundException, UserNotFoundException {
 
@@ -43,7 +44,7 @@ public class UserRestController {
 
 	}
 
-	@RequestMapping(value = "/leaves", method = RequestMethod.POST)
+	@PostMapping("/leaves")
 	public ResponseEntity<SuccessMessageDTO> applyLeaves(@PathVariable("userId") Long userId,
 			@RequestBody ApplyLeaveRequest applyLeaveRequest) throws NoLeaveDetailsFoundException,
 			UserNotFoundException, NoLeaveAvailableException, FutureDateRequiredException {
@@ -53,7 +54,7 @@ public class UserRestController {
 
 	}
 
-	@RequestMapping(value = "/availedleaves", method = RequestMethod.GET)
+	@GetMapping("/availedleaves")
 	public ResponseEntity<UsersAvailedLeavesResponse> getAvailedLeaves(@PathVariable("userId") Long userId)
 			throws UserNotFoundException {
 
