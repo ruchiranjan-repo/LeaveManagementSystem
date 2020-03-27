@@ -1,0 +1,9 @@
+insert into user  values(1,'Ruchi');
+insert into  user values(2,'Ritul');
+insert into user values(3,'Rakesh');
+
+Select * from user
+
+insert into balanced_leave values(1,10,2,4,1);
+insert into balanced_leave values(2,10,2,4,2);
+insert into balanced_leave values(3,10,2,4,3);
