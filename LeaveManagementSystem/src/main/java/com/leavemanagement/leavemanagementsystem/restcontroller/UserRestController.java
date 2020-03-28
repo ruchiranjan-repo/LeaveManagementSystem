@@ -1,5 +1,7 @@
 package com.leavemanagement.leavemanagementsystem.restcontroller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +48,7 @@ public class UserRestController {
 
 	@PostMapping("/leaves")
 	public ResponseEntity<SuccessMessageDTO> applyLeaves(@PathVariable("userId") Long userId,
-			@RequestBody ApplyLeaveRequest applyLeaveRequest) throws NoLeaveDetailsFoundException,
+			 @Valid @RequestBody ApplyLeaveRequest applyLeaveRequest) throws NoLeaveDetailsFoundException,
 			UserNotFoundException, NoLeaveAvailableException, FutureDateRequiredException {
 
 		SuccessMessageDTO successMessageDTO = userService.applyLeave(userId, applyLeaveRequest);

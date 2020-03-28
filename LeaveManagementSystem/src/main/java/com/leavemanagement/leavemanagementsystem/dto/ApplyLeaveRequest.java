@@ -6,12 +6,17 @@ package com.leavemanagement.leavemanagementsystem.dto;
  */
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 public class ApplyLeaveRequest {
 	
+	@NotNull
 	private String leaveType;
 	
+	@NotNull
 	private LocalDate fromDate;
 	
+	@NotNull
 	private LocalDate toDate;
 
 	public String getLeaveType() {
